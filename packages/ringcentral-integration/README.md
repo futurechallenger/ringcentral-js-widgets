@@ -394,8 +394,35 @@ export default class Alert extends RcModule {
 In the map, key is `Alert` class and value is `{ dep: 'AlertOptions', optional: true }.
 ```
 
-#### Provider
+##### How to compose a Module
+When you try to compose a module, there're usually three parts you need to consider.
+1. Module itself.
+2. Actions that will be used with this module.
+3. Reducers related to actions.
 
+So files will be like this:
+```
+my-module/
+  actionTypes.js    // Module's actions
+  getReducer.js     // Actions' related reducer
+  index.js          // The module
+```
+
+If you just inherite a module, and no other actions and reducer needed. Then you just inherite the module.
+
+```javascript
+@Module({
+  deps: []
+})
+export default class NewGlipGroups extends GlipGroups {
+  // ...
+}
+```
+`NewGlipGroups` inherited `GlipGroups`, no other actions and reduer needed.
+
+
+#### Provider
+How to organize providers
 
 #### ModuleFactory
 This decorator can be used on any kind modules, no matter it's root module or not.
